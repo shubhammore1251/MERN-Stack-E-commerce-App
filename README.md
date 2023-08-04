@@ -1,6 +1,7 @@
 # **MERN BASED E-COMMERCE WEB APP**
 
-![Banner](./frontend/src/images/readme_img/Banner.png)
+![Banner]()
+
 
 ## Features
 
@@ -12,7 +13,7 @@
 
 - Filter Products as per options
 
-- Update user profile and change password
+- Update user profile and change password 
 
 - Add Products to cart and update quyanity and delete cart
 
@@ -26,13 +27,15 @@
 
 - Admin can create, update and delete the product
 
-- Admin can proccess the order status
+- Admin can proccess the order status 
 
 - realtime product stock update
 
-- Admin can change user role to admnin and admin to user
+- Admin can change user role to admnin and admin to user 
 
 - Access your data on anywhere and any device
+
+
 
 ## Tech Stack
 
@@ -46,57 +49,67 @@
 
 - Express.js
 
-**Database:**
+**Database**
 
 - MongoDB
 
-**API Endpoints Testing:**
+**API Endpoints Testing**
 
 - Postman
 
-**Payments:**
+**Payments**
 
 - Stripe
-
 ## Deployment
 
 Front-End Hosting platform: [Netlify](https://app.netlify.com/)
 
 Back-End Hosting platform: [Render.com](https://render.com/)
 
+
+## For Making Payments
+
+- Use this Card Number to make a test payment: `4000003560000008`
+
+- The `CVV number` and `expiry date` can can be anything you want.
+
+- For More Info or you want to select any other card visit : `https://stripe.com/docs/testing`
+
+
 ## Authors
 
 - [@shubham-more](https://github.com/shubhammore1251/)
 
+
+
 ## Acknowledgements
 
-- [React](https://react.dev/)
-- [Material UI](https://mui.com/)
-- [Express.js](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/atlas/database)
-- [Stripe](https://stripe.com/in)
-- [Cloudinary](https://cloudinary.com/)
-- [NPM](https://www.npmjs.com/)
+ - [React](https://react.dev/)
+ - [Material UI](https://mui.com/)
+ - [Express.js](https://expressjs.com/)
+ - [MongoDB](https://www.mongodb.com/atlas/database)
+ - [Stripe](https://stripe.com/in)
+ - [Cloudinary](https://cloudinary.com/)
+ - [NPM](https://www.npmjs.com/)
 
 ## Screenshots
 
-![Home](./frontend/src/images/readme_img/Home.png)
+![Home]()
 
-![Products](./frontend/src/images/readme_img/products.png)
+![Products]()
 
-![Product Page](./frontend/src/images/readme_img/products-page.png)
+![Product Page]()
 
-![Cart](./frontend/src/images/readme_img/cart.png)
+![Cart]()
 
-![Profile](./frontend/src/images/readme_img/Profile.png)
+![Profile]()
 
-![Orders](./frontend/src/images/readme_img/orders.png)
+![Orders]()
 
-![Admin DashBoard](./frontend/src/images/readme_img/Dashboard.png)
+![DashBoard]()
 
 ## Support
 
-For support, contact:
-
-- email: shubhamp1251@gmail.com
-- LinkedIn: [Shubham More](https://www.linkedin.com/in/shubham-more1251/)
+For support, contact 
+ - email: shubhamp1251@gmail.com 
+ - LinkedIn: [Shubham More](https://www.linkedin.com/in/shubham-more1251/)
