@@ -47,7 +47,14 @@ export const getProducts =
         link = `${process.env.REACT_APP_BACKEND_URL}/api/v1/products?keyword=${query}&page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${rating}`;
       }
 
-      const { data } = await axios.get(link);
+      const config = { 
+        headers: { 
+          "Content-Type": "application/json",
+          "secret_token": process.env.REACT_APP_PUBLIC_ROUTE_SECRET,
+        } 
+      };
+      
+      const { data } = await axios.get(link, config);
 
       dispatch({
         type: GET_ALL_PRODUCTS_SUCCESS,
@@ -69,7 +76,14 @@ export const getProductDetails = (id) => async (dispatch) => {
       type: GET_PRODUCT_DETAILS_REQ,
     });
 
-    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/product/${id}`);
+    const config = { 
+      headers: { 
+        "Content-Type": "application/json",
+        "secret_token": process.env.REACT_APP_PUBLIC_ROUTE_SECRET,
+      } 
+    };
+
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/product/${id}`, config);
 
     dispatch({
       type: GET_PRODUCT_DETAILS_SUCCESS,

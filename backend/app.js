@@ -5,17 +5,16 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const path = require("path");
+const logger = require("morgan");
 var cors = require("cors");
+const { rateLimit } = require('express-rate-limit');
 
-//Config
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "./config/config.env" });
-}
+// Config
+require("dotenv").config({ path: "./config/config.env" });
 
 app.use(
   cors({
     origin: ["http://localhost:3000", "https://mern-ecom-site.netlify.app"],
-    credentials: true,
   })
 );
 
@@ -24,6 +23,21 @@ app.use(
     limit: "10mb",
   })
 );
+
+// Rate limiting middleware
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  limit: 1000,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  message: {
+    message: "Too many requests from this IP, please try again after a minute",
+    status: 429
+  }
+});
+
+app.use(limiter);
+app.use(logger("dev"));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
@@ -49,5 +63,13 @@ app.get("/", (req, res) => {
 
 // Middleware for Errors
 app.use(errorMiddleware);
+
+//cronJob
+const cronManager = require("./cronjobs/cronManager");
+
+//starting cron job
+const manager = new cronManager();
+manager.addJobsFromConfig();
+manager.startJobs();
 
 module.exports = app;

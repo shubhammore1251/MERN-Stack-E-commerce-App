@@ -321,7 +321,7 @@ const Products = () => {
                 width: "100%",
               }}
             >
-              {products.map((product) => (
+              {products && products?.map((product) => (
                 <Link
                   to={`/product/${product._id}`}
                   key={String(product._id)}

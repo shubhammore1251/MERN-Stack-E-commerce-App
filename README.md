@@ -64,6 +64,14 @@ Front-End Hosting platform: [Netlify](https://app.netlify.com/)
 
 Back-End Hosting platform: [Render.com](https://render.com/)
 
+## For Making Payments
+
+- Use this Card Number to make a test payment: `4000003560000008`
+
+- The `CVV number` and `expiry date` can can be anything you want.
+
+- For More Info or you want to select any other card visit : `https://stripe.com/docs/testing`
+
 ## Authors
 
 - [@shubham-more](https://github.com/shubhammore1251/)
