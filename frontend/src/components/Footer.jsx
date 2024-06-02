@@ -112,7 +112,7 @@ const Footer = () => {
             color: "black",
           }}
         >
-          © 2023{" "}
+          © {new Date().getFullYear()}{" "}
           <a href="/" className="link">
             <span
               style={{

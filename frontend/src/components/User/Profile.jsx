@@ -101,7 +101,7 @@ const Profile = () => {
                     width: "100%",
                   }}
                 >
-                  {profileData.map((data, i) => (
+                  {profileData?.map((data, i) => (
                     <MenuItem
                       key={i * 1011}
                       sx={{

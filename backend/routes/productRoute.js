@@ -11,14 +11,14 @@ const {
   getAdminProducts,
 } = require("../controllers/productController");
 
-const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
+const { isAuthenticatedUser, authorizeRoles, authorizePublicRoutes } = require("../middleware/auth");
 
 const router = express.Router();
 
 //product routes
-router.route("/products").get(getAllProducts);
+router.route("/products").get(authorizePublicRoutes, getAllProducts);
 
-router.route("/product/:id").get(getSingleProduct);
+router.route("/product/:id").get(authorizePublicRoutes, getSingleProduct);
 
 router.route("/product/review").put(isAuthenticatedUser, createProductReview);
 
