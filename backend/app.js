@@ -67,12 +67,4 @@ app.get("/", (req, res) => {
 // Middleware for Errors
 app.use(errorMiddleware);
 
-//cronJob
-const cronManager = require("./cronjobs/cronManager");
-
-//starting cron job
-const manager = new cronManager();
-manager.addJobsFromConfig();
-manager.startJobs();
-
 module.exports = app;
