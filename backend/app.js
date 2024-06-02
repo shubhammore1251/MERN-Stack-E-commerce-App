@@ -24,6 +24,9 @@ app.use(
   })
 );
 
+// Enable trust proxy
+app.set('trust proxy', 1);
+
 // Rate limiting middleware
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000,
