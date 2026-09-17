@@ -1,4 +1,5 @@
 const ErrorHandler = require("../utils/errorHandler");
+const { logEvent } = require("../utils/observability");
 
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
@@ -27,6 +28,20 @@ module.exports = (err, req, res, next) => {
     const message = `Your Session has expired! Please login !`;
     err = new ErrorHandler(message, 400);
   }
+
+  // Log AFTER error normalization
+  logEvent({
+    level: "error",
+    event: "application_error",
+    req,
+    data: {
+      errorName: err.name || null,
+      statusCode: err.statusCode,
+      errorCode: err.code || null,
+      errorMessage: err.message,
+      stack: err.stack || null,
+    },
+  });
 
   res.status(err.statusCode).json({
     success: false,

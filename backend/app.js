@@ -4,6 +4,7 @@ const errorMiddleware = require("./middleware/error");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
+const fs = require("fs");
 const path = require("path");
 const logger = require("morgan");
 var cors = require("cors");
@@ -16,6 +17,7 @@ const {
 
 // Config
 require("dotenv").config({ path: "./config/config.env" });
+
 
 app.use(
   cors({
@@ -44,6 +46,19 @@ const limiter = rateLimit({
   }
 });
 
+// Create a write stream (in append mode)
+const LOG_DIR = path.join(__dirname, "logs");
+
+if (!fs.existsSync(LOG_DIR)) {
+  fs.mkdirSync(LOG_DIR, { recursive: true });
+}
+
+const accessLogStream = fs.createWriteStream(
+  path.join(LOG_DIR, "access.log"),
+  { flags: "a" }
+);
+
+
 app.use((req, res, next) => {
   req.requestId = generateRequestId();
 
@@ -65,7 +80,11 @@ app.use((req, res, next) => {
 });
 
 app.use(limiter);
-app.use(logger("dev"));
+
+app.use(logger("combined", {
+  stream: accessLogStream
+}));
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
