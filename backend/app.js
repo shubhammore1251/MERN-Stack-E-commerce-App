@@ -9,6 +9,11 @@ const logger = require("morgan");
 var cors = require("cors");
 const { rateLimit } = require('express-rate-limit');
 
+const {
+  generateRequestId,
+  logEvent,
+} = require("./utils/observability");
+
 // Config
 require("dotenv").config({ path: "./config/config.env" });
 
@@ -37,6 +42,26 @@ const limiter = rateLimit({
     message: "Too many requests from this IP, please try again after a minute",
     status: 429
   }
+});
+
+app.use((req, res, next) => {
+  req.requestId = generateRequestId();
+
+  const startTime = Date.now();
+
+  res.on("finish", () => {
+    logEvent({
+      level: res.statusCode >= 500 ? "error" : "info",
+      event: "http_request_completed",
+      req,
+      data: {
+        statusCode: res.statusCode,
+        durationMs: Date.now() - startTime,
+      },
+    });
+  });
+
+  next();
 });
 
 app.use(limiter);
